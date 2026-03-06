@@ -1,0 +1,2 @@
+The idea of this project is to make an ESP32-S3 fire the alarm and a transistor gate (BC558) to allow a fan (12V) spin and generate airflow to extinguish a flame nearby
+The sensor module is KY-026 and the siren was an LED that fired when the flame was detected from digital input from sensor
