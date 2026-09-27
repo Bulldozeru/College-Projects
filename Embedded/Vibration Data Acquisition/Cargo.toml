@@ -1,0 +1,45 @@
+[package]
+name = "ipw2026-embedded-schelet"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+embassy-stm32 = { version = "0.4.0", features = ["stm32f722ze", "time-driver-any"] }
+# embassy-stm32 = { version = "0.4.0", features = ["stm32u545re", "unstable-pac", "memory-x", "time-driver-tim4", "exti", "chrono", "defmt"] }
+# panic-halt = "0.2"
+# Embedded HAL utilities
+embassy-embedded-hal = { version = "0.5.0", features = ["defmt"] }
+
+# Synchronization primitives and data structures with async support
+embassy-sync = { version = "0.7.2", features = ["defmt"] }
+
+# Async/await executor
+embassy-executor = { version = "0.9.0", features = ["arch-cortex-m", "executor-thread", "defmt"] }
+
+# Utilities for working with futures, compatible with no_std and not using alloc
+embassy-futures = { version = "0.1.2", features = ["defmt"] }
+
+# Timekeeping, delays and timeouts
+embassy-time = { version = "0.5.0", features = ["tick-hz-32_768", "defmt"] }
+
+# USB device
+embassy-usb = { version = "0.6.0" }
+
+# Defmt support
+defmt = "1.0.1"
+defmt-rtt = "1.1.0"
+
+# Low level access to Cortex-M processors
+cortex-m = { version = "0.7.7", features = ["inline-asm", "critical-section-single-core"] }
+
+# Boostrap crate for Cortex-M Processors
+cortex-m-rt = "0.7.5"
+
+# Panic handler that exits `probe-run` with an error code
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
+
+embedded-graphics = { version = "0.8.2", features = ["defmt"] }
+mipidsi = { version = "0.10.0", features = ["defmt"] }
+embassy-usb-driver = "0.2.2"
+eeprom24x = "0.7.2"
+
