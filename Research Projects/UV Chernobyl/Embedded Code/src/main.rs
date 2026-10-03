@@ -40,15 +40,10 @@ async fn main(spawner: Spawner) {
 
     let mut led = Output::new(p.PB0, Level::Low, Speed::Low);
     let mut program: &'static mut i32;
-    // let mut program :i32= 0;
+    
     spawner.spawn(program30(button).unwrap());
-    // spawner.spawn(program60(button).unwrap());
     spawner.spawn(killSwitch(rst).unwrap());
     spawner.spawn(executor(led).unwrap());
-
-    // spawner.spawn(buttonTrigger2(rst);
-    // spawner.spawn(executor(led).unwrap());
-
     info!("Press the USER button...");
 
 
@@ -94,7 +89,7 @@ async fn killSwitch(mut button: ExtiInput<'static, Async>) {
 }
 
 #[embassy_executor::task]
-async fn executor(mut led: Output<'static> ) { // 210 000 420 000
+async fn executor(mut led: Output<'static> ) { 
 
 
     loop {
@@ -114,8 +109,6 @@ async fn executor(mut led: Output<'static> ) { // 210 000 420 000
         info!("Oscillations");
         let loop_future = async {
             while counter <  runtime {
-                // YOUR TRIGGERED FUNCTION LOGIC HERE
-                // Example: blinking an LED or running a motor
                 
                 Timer::after_millis(2).await;
                 led.set_high();
@@ -125,10 +118,8 @@ async fn executor(mut led: Output<'static> ) { // 210 000 420 000
             }
         };
 
-        // 3. Define the stop condition
         let killSwitch = STOP_SIGNAL.wait();
 
-        // 4. Race them against each other using `select`
         match select(loop_future, killSwitch).await {
             Either::First(_) => {}
             Either::Second(_) => { led.set_low(); }
